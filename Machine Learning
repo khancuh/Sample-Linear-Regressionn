@@ -1,0 +1,48 @@
+import pandas as pd
+import numpy as np
+import sklearn
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+
+data = pd.read_csv('C:\\Users\\Imran\\Desktop\\company.csv')
+data
+
+real_x = data.iloc[:,0].values
+real_y = data.iloc[:,1].values
+real_x = real_x.reshape(-1,1)
+real_y = real_y.reshape(-1,1)
+
+training_x,testing_x,training_y,testing_y = train_test_split(real_x,real_y,test_size=0.3,random_state=0)
+testing_x
+
+lin = LinearRegression()
+lin.fit(training_x,training_y)
+
+pred_y = lin.predict(testing_x)
+
+testing_y[3]
+
+pred_y[3]
+
+plt.scatter(training_x,training_y,color='green')
+plt.plot(training_x,lin.predict(training_x),color='blue')
+plt.title("Salary and Exprience training ploting")
+plt.xlabel('Exprience')
+plt.ylabel('Salary')
+plt.show()
+
+plt.scatter(testing_x,testing_y,color='green')
+plt.plot(training_x,lin.predict(training_x),color='red')
+plt.title("Salary and Exprience testing ploting")
+plt.xlabel('Exprience')
+plt.ylabel('Salary')
+plt.show()
+
+#y = mx+b
+
+lin.coef_
+
+lin.intercept_
+
+9360.26128619*9.5+26777.3913412
